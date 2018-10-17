@@ -60,7 +60,7 @@ $app->get('/fb', function() use($app) {
   
 
 
-  $jsonResponse = new JsonResponse($me);
+  $jsonResponse = new JsonResponse($response);
   $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
 
 
@@ -72,8 +72,6 @@ $app->get('/twitter', function() use($app) {
 
 
   
-
-  $fb_access_token = 'EAAJHBJ6XrHcBAPyK3u8aan4h8ON6QvD8dWJuA7dKike6KFaDhqqvvXR3v5TyItZADu6CZAuZBgUGznMZBaDI36xjqZAxSQ77utEhvlZAXAnBUYY90tWKZAkVCstoN1sngkqdvvJaeTvc2DKZCkaB78sdkDTie8AZBZAOVg3ZBrbv4ZC2Jbql6gW2u4PF';
 
   $access_token = '106577396-BIQ9ow7hKEYzvOvFZen4NhBwYeV24inolyugdiLH';
   $access_token_secret = 'gl8s9FKBTorohm030PZGvFmPMBswCKHWs7wrHZFbkKXZS';
