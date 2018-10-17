@@ -41,8 +41,14 @@ $app->get('/', function() use($app) {
 
   $result = $connection->post('statuses/update', $post);
 
-  $jsonResponse = new JsonResponse($post);
+  
+
+  $media1 = $connection->upload('media/upload', ['media' => __DIR__.'/images/DpjINq9W4AIJtM-.jpg']);
+
+
+  $jsonResponse = new JsonResponse($media1);
   $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
+
 
   return $jsonResponse;
   
