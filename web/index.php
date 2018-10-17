@@ -58,6 +58,20 @@ $app->get('/fb', function() use($app) {
   
   $me = $response->getGraphUser();
 
+  try {
+    $arr = array('message' => 'Testing Post for our new tutorial. Graph API.');
+
+    $post_response = $fb->post('/'.$me->getId() .'/feed/', $arr,	$fb_access_token);
+  } catch(FacebookResponseException $e) {
+    $jsonResponse = new JsonResponse(['error'=> 'response']);
+    $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
+    return $jsonResponse;
+  } catch(FacebookSDKException $e) {
+    $jsonResponse = new JsonResponse(['error'=> 'sdk']);
+    $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
+    return $jsonResponse;
+  }
+
   
 
   
