@@ -44,7 +44,7 @@ $app->get('/', function() use($app) {
 
   $media2 = $connection->upload('media/upload', ['media' => __DIR__.'/video/54d99d711d1e019a00da83af0216612f048b7653.mp4', 'media_type' => 'video/mp4'], true);
 
-  $post = ['media_ids' => $media1->media_id_string, 
+  $post = ['media_ids' => $media1->media_id_string.','.$media2->media_id_string, 
           'status' => "Good morning 🤗 Can’t wait to hit the ground in The Hague! 🇳🇱 RT @BrandBaseNL We are under construction! 🛠🚧 Work in progress at the Malieveld in The Hague. Generation Discover Festival by @Shell and partners. #makethefuture"];
 
 
