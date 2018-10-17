@@ -47,11 +47,11 @@ $app->get('/fb', function() use($app) {
   try {
     $response = $fb->get('/me?fields=id,name', $fb_access_token);
   } catch(FacebookResponseException $e) {
-    $jsonResponse = new JsonResponse($e);
+    $jsonResponse = new JsonResponse(['error'=> 'response']);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
     return $jsonResponse;
   } catch(FacebookSDKException $e) {
-    $jsonResponse = new JsonResponse($e);
+    $jsonResponse = new JsonResponse(['error'=> 'sdk']);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
     return $jsonResponse;
   }
