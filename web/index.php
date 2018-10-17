@@ -35,8 +35,8 @@ $app->get('/fb', function() use($app) {
 
   
 
-  $fb_access_token = 'EAAJHBJ6XrHcBAK0KdOBRCGJQ2jJUvFPVtphbx4wa5zTtmtWmbJDj7vtAalZCbHEcST72LGi2EnIJ4MzeZBZCjBz8eJwksBMvE0sxAw5vaYLck8gV0H3E955qH9egDaMnDllasL2r8tOJCtZBgqCehsXrXgv9wNHphM8Jlt4SeSTYA8H6AlpseymgjIK2gVIZD';
-
+  // $fb_access_token = 'EAAJHBJ6XrHcBAK0KdOBRCGJQ2jJUvFPVtphbx4wa5zTtmtWmbJDj7vtAalZCbHEcST72LGi2EnIJ4MzeZBZCjBz8eJwksBMvE0sxAw5vaYLck8gV0H3E955qH9egDaMnDllasL2r8tOJCtZBgqCehsXrXgv9wNHphM8Jlt4SeSTYA8H6AlpseymgjIK2gVIZD';
+$fb_access_token = 'EAAJHBJ6XrHcBAGJQDhITUIKnV1vKx4pN3lZA9wk3xcQlZC7mVNAx6YaumuN8zzQIiLCOTbbH1YqapmWDfz8Qbcem9GgsMVSw6mUqjZCTT7pgYuD5nChpicgz8gndZAK9LAegk58dcHcz7sca5sHm96XpcmxaFmEyk1vVWclsmfDZBZC7tOS3hy';
   $fb = new Facebook([
     // 'app_id' => '641035119602807',
     // 'app_secret' => '3e08aeec01868f5292d0bb95da157cc1',
