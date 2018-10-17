@@ -26,6 +26,8 @@ $app->get('/', function() use($app) {
   $connection = new TwitterOAuth('KvdIHDyqq1a4yPKSE6nQk2npW', 'fv2wCYK86w4Pxd8YYhOytxLM8z7vV9krKqtDw2R1fp4tnLkp7b', $access_token, $access_token_secret);
   $content = $connection->get("account/verify_credentials");
   
+  
+  
   echo $content;
 
 
