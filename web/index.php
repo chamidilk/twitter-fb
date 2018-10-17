@@ -2,9 +2,16 @@
 
 require('../vendor/autoload.php');
 use Abraham\TwitterOAuth\TwitterOAuth;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 $app = new Silex\Application();
 $app['debug'] = true;
+
+$log = new Logger('name');
+$log->pushHandler(new StreamHandler('php://stderr', Logger::WARNING));
+
+
 
 // Register the monolog logging service
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
@@ -28,7 +35,7 @@ $app->get('/', function() use($app) {
   
   
   
-  file_put_contents("php://stderr", $content);
+  $log->addWarning( $content);
 
   return $app['twig']->render('index.twig');
 });
