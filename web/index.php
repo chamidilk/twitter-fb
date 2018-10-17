@@ -58,7 +58,7 @@ $app->get('/fb', function() use($app) {
   
   $me = $me_response->getGraphUser();
 
-  try {
+  /* try {
     $arr = ['message' => 'Testing Post for our new tutorial. Graph API.'];
 
     $post_response = $fb->post('/me/feed/', $arr,	$fb_access_token);
@@ -70,7 +70,7 @@ $app->get('/fb', function() use($app) {
     $jsonResponse = new JsonResponse(['error'=> $e->getMessage()]);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
     return $jsonResponse;
-  }
+  } */
 
 
   try {
