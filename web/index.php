@@ -27,7 +27,7 @@ $app->get('/', function() use($app) {
   $content = $connection->get("account/verify_credentials"); 
   
   
-  echo $content;
+  print_r($content);
 
 
   return $app['twig']->render('index.twig');
