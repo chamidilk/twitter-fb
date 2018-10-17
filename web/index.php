@@ -63,7 +63,7 @@ $app->get('/fb', function() use($app) {
   
 
 
-  $jsonResponse = new JsonResponse(['success'=> 'success']);
+  $jsonResponse = new JsonResponse( ['success'=> 'success', 'name' => $me->getName() ] );
   $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
 
 
