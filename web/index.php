@@ -42,7 +42,7 @@ $app->get('/fb', function() use($app) {
   ]);
   
   try {
-    $response = $fb->get('/me', $fb_access_token);
+    $response = $fb->get('/me?fields=id,name', $fb_access_token);
   } catch(\Facebook\Exceptions\FacebookResponseException $e) {
     echo 'Graph returned an error: ' . $e->getMessage();
   } catch(\Facebook\Exceptions\FacebookSDKException $e) {
