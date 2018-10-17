@@ -42,7 +42,7 @@ $app->get('/', function() use($app) {
   $result = $connection->post('statuses/update', $post);
 
   $jsonResponse = new JsonResponse($post);
-  $jsonResponse->setEncodingOptions(JsonReponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
+  $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
 
   return $jsonResponse;
   
