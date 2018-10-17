@@ -29,7 +29,10 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 $app->get('/', function() use($app) {
   $app['monolog']->addDebug('logging output.');
 
-  $post = ['media_ids' => '1052254345977200645', 
+
+  $media1 = $connection->upload('media/upload', ['media' => __DIR__.'/images/DpjINq9W4AIJtM-.jpg']);
+
+  $post = ['media_ids' => $media1->media_id_string, 
           'status' => "Good morning 🤗 Can’t wait to hit the ground in The Hague! 🇳🇱 RT @BrandBaseNL We are under construction! 🛠🚧 Work in progress at the Malieveld in The Hague. Generation Discover Festival by @Shell and partners. #makethefuture"];
 
 
@@ -43,7 +46,7 @@ $app->get('/', function() use($app) {
 
   
 
-  $media1 = $connection->upload('media/upload', ['media' => __DIR__.'/images/DpjINq9W4AIJtM-.jpg']);
+  
 
 
   $jsonResponse = new JsonResponse($media1);
