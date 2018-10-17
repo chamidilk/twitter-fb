@@ -26,19 +26,55 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 // Our web handlers
 
-$app->get('/', function() use($app) {
+$app->get('/fb', function() use($app) {
   $app['monolog']->addDebug('logging output.');
 
 
   
 
+  $fb_access_token = 'EAAJHBJ6XrHcBAPyK3u8aan4h8ON6QvD8dWJuA7dKike6KFaDhqqvvXR3v5TyItZADu6CZAuZBgUGznMZBaDI36xjqZAxSQ77utEhvlZAXAnBUYY90tWKZAkVCstoN1sngkqdvvJaeTvc2DKZCkaB78sdkDTie8AZBZAOVg3ZBrbv4ZC2Jbql6gW2u4PF';
+
+  $fb = new \Facebook\Facebook([
+    'app_id' => '641035119602807',
+    'app_secret' => '3e08aeec01868f5292d0bb95da157cc1',
+    'default_graph_version' => 'v3.1',
+    'default_access_token' => $fb_access_token, // optional
+  ]);
   
+  try {
+    $response = $fb->get('/me', $fb_access_token);
+  } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+    echo 'Graph returned an error: ' . $e->getMessage();
+  } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+    echo 'Facebook SDK returned an error: ' . $e->getMessage();
+  }
+  
+  $me = $response->getGraphUser();
+
+  
+
+  
+
+
+  $jsonResponse = new JsonResponse($me);
+  $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
+
+
+  return $jsonResponse;
+});
+
+$app->get('/twitter', function() use($app) {
+  $app['monolog']->addDebug('logging output.');
+
+
+  
+
+  $fb_access_token = 'EAAJHBJ6XrHcBAPyK3u8aan4h8ON6QvD8dWJuA7dKike6KFaDhqqvvXR3v5TyItZADu6CZAuZBgUGznMZBaDI36xjqZAxSQ77utEhvlZAXAnBUYY90tWKZAkVCstoN1sngkqdvvJaeTvc2DKZCkaB78sdkDTie8AZBZAOVg3ZBrbv4ZC2Jbql6gW2u4PF';
 
   $access_token = '106577396-BIQ9ow7hKEYzvOvFZen4NhBwYeV24inolyugdiLH';
   $access_token_secret = 'gl8s9FKBTorohm030PZGvFmPMBswCKHWs7wrHZFbkKXZS';
   
   $connection = new TwitterOAuth('KvdIHDyqq1a4yPKSE6nQk2npW', 'fv2wCYK86w4Pxd8YYhOytxLM8z7vV9krKqtDw2R1fp4tnLkp7b', $access_token, $access_token_secret);
-  // $content = $connection->get("account/verify_credentials"); 
   $media1 = $connection->upload('media/upload', ['media' => __DIR__.'/images/DpjINq9W4AIJtM-.jpg']);
 
 
@@ -60,12 +96,18 @@ $app->get('/', function() use($app) {
 
 
   return $jsonResponse;
-  
-  
-  
-  // $log->addWarning( $content);
+});
 
-  // return $app['twig']->render('index.twig');
+
+$app->get('/', function() use($app) {
+  $app['monolog']->addDebug('logging output.');
+
+
+  
+
+  
+
+  return $app['twig']->render('index.twig');
 });
 
 $app->run();
