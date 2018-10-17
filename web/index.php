@@ -55,7 +55,7 @@ $app->get('/', function() use($app) {
   
 
 
-  $jsonResponse = new JsonResponse($media2);
+  $jsonResponse = new JsonResponse($result);
   $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
 
 
