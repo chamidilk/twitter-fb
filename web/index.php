@@ -61,7 +61,7 @@ $app->get('/fb', function() use($app) {
   try {
     $arr = array('message' => 'Testing Post for our new tutorial. Graph API.');
 
-    $post_response = $fb->post('/'.$me->getId() .'/feed/', $arr,	$fb_access_token);
+    $post_response = $fb->post('/me/feed/', $arr,	$fb_access_token);
   } catch(FacebookResponseException $e) {
     $jsonResponse = new JsonResponse(['error'=> 'response']);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
