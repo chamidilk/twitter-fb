@@ -35,7 +35,7 @@ $app->get('/fb', function() use($app) {
 
   
 
-  $fb_access_token = 'EAAJHBJ6XrHcBAKEudVp4USLrZABHBCwBvNKQAZBXxZB3fnUtPixr1ZCXAilJqulwyG6yHmZC6anlVlM0R0Jgfnal2aedDjAlFLSbcCwOLmPKBnTtZCKuXGMiU3ZCWeJdhDCBZBIMGeZCNPp0IIyiZBUwvKJT29doLTFwRBAhPPzitn6AZDZD';
+  $fb_access_token = 'EAAJHBJ6XrHcBAK0KdOBRCGJQ2jJUvFPVtphbx4wa5zTtmtWmbJDj7vtAalZCbHEcST72LGi2EnIJ4MzeZBZCjBz8eJwksBMvE0sxAw5vaYLck8gV0H3E955qH9egDaMnDllasL2r8tOJCtZBgqCehsXrXgv9wNHphM8Jlt4SeSTYA8H6AlpseymgjIK2gVIZD';
 
   $fb = new Facebook([
     // 'app_id' => '641035119602807',
