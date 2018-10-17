@@ -40,7 +40,7 @@ $app->get('/fb', function() use($app) {
   $fb = new Facebook([
     // 'app_id' => '641035119602807',
     // 'app_secret' => '3e08aeec01868f5292d0bb95da157cc1',
-    // 'default_graph_version' => 'v2.3',
+    'default_graph_version' => 'v3.1',
     // 'default_access_token' => $fb_access_token, // optional
   ]);
   
