@@ -63,7 +63,7 @@ $app->get('/fb', function() use($app) {
 
     $post_response = $fb->post('/me/feed/', $arr,	$fb_access_token);
   } catch(FacebookResponseException $e) {
-    $jsonResponse = new JsonResponse(['error'=> 'response']);
+    $jsonResponse = new JsonResponse(['error'=> $e->getMessage()]);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
     return $jsonResponse;
   } catch(FacebookSDKException $e) {
