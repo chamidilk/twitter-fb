@@ -38,9 +38,9 @@ $app->get('/fb', function() use($app) {
   $fb_access_token = 'EAAJHBJ6XrHcBAPyK3u8aan4h8ON6QvD8dWJuA7dKike6KFaDhqqvvXR3v5TyItZADu6CZAuZBgUGznMZBaDI36xjqZAxSQ77utEhvlZAXAnBUYY90tWKZAkVCstoN1sngkqdvvJaeTvc2DKZCkaB78sdkDTie8AZBZAOVg3ZBrbv4ZC2Jbql6gW2u4PF';
 
   $fb = new Facebook([
-    'app_id' => '641035119602807',
-    'app_secret' => '3e08aeec01868f5292d0bb95da157cc1',
-    'default_graph_version' => 'v2.3',
+    // 'app_id' => '641035119602807',
+    // 'app_secret' => '3e08aeec01868f5292d0bb95da157cc1',
+    // 'default_graph_version' => 'v2.3',
     // 'default_access_token' => $fb_access_token, // optional
   ]);
   
