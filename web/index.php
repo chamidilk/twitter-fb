@@ -38,18 +38,16 @@ $app->get('/fb', function() use($app) {
     'app_id' => '641035119602807',
     'app_secret' => '3e08aeec01868f5292d0bb95da157cc1',
     'default_graph_version' => 'v3.1',
-    'default_access_token' => $fb_access_token, // optional
+    // 'default_access_token' => $fb_access_token, // optional
   ]);
   
   try {
     $response = $fb->get('/me?fields=id,name', $fb_access_token);
   } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-    echo 'Graph returned an error: ' . $e->getMessage();
     $jsonResponse = new JsonResponse($e);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
     return $jsonResponse;
   } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-    echo 'Facebook SDK returned an error: ' . $e->getMessage();
     $jsonResponse = new JsonResponse($e);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
     return $jsonResponse;
