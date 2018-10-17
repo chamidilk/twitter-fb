@@ -4,12 +4,13 @@ require('../vendor/autoload.php');
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 $app = new Silex\Application();
 $app['debug'] = true;
 
-$log = new Logger('name');
-$log->pushHandler(new StreamHandler('php://stderr', Logger::WARNING));
+// $log = new Logger('name');
+// $log->pushHandler(new StreamHandler('php://stderr', Logger::WARNING));
 
 
 
@@ -27,17 +28,29 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 $app->get('/', function() use($app) {
   $app['monolog']->addDebug('logging output.');
+
+  $post = ['media_ids' => '1052254345977200645', 
+          'status' => "Good morning 🤗 Can’t wait to hit the ground in The Hague! 🇳🇱 RT @BrandBaseNL We are under construction! 🛠🚧 Work in progress at the Malieveld in The Hague. Generation Discover Festival by @Shell and partners. #makethefuture"];
+
+
   $access_token = '106577396-BIQ9ow7hKEYzvOvFZen4NhBwYeV24inolyugdiLH';
   $access_token_secret = 'gl8s9FKBTorohm030PZGvFmPMBswCKHWs7wrHZFbkKXZS';
   
   $connection = new TwitterOAuth('KvdIHDyqq1a4yPKSE6nQk2npW', 'fv2wCYK86w4Pxd8YYhOytxLM8z7vV9krKqtDw2R1fp4tnLkp7b', $access_token, $access_token_secret);
   $content = $connection->get("account/verify_credentials"); 
-  
-  
-  
-  $log->addWarning( $content);
 
-  return $app['twig']->render('index.twig');
+  $result = $connection->post('statuses/update', $post);
+
+  $jsonResponse = new JsonResponse($post);
+  $jsonResponse->setEncodingOptions(JsonReponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
+
+  return $jsonResponse;
+  
+  
+  
+  // $log->addWarning( $content);
+
+  // return $app['twig']->render('index.twig');
 });
 
 $app->run();
