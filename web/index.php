@@ -5,6 +5,9 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Facebook\Facebook;
+use Facebook\Exceptions\FacebookResponseException;
+use Facebook\Exceptions\FacebookSDKException;
 
 $app = new Silex\Application();
 $app['debug'] = true;
@@ -34,7 +37,7 @@ $app->get('/fb', function() use($app) {
 
   $fb_access_token = 'EAAJHBJ6XrHcBAPyK3u8aan4h8ON6QvD8dWJuA7dKike6KFaDhqqvvXR3v5TyItZADu6CZAuZBgUGznMZBaDI36xjqZAxSQ77utEhvlZAXAnBUYY90tWKZAkVCstoN1sngkqdvvJaeTvc2DKZCkaB78sdkDTie8AZBZAOVg3ZBrbv4ZC2Jbql6gW2u4PF';
 
-  $fb = new \Facebook\Facebook([
+  $fb = new Facebook([
     'app_id' => '641035119602807',
     'app_secret' => '3e08aeec01868f5292d0bb95da157cc1',
     'default_graph_version' => 'v2.3',
@@ -43,11 +46,11 @@ $app->get('/fb', function() use($app) {
   
   try {
     $response = $fb->get('/me?fields=id,name', $fb_access_token);
-  } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+  } catch(FacebookResponseException $e) {
     $jsonResponse = new JsonResponse($e);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
     return $jsonResponse;
-  } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+  } catch(FacebookSDKException $e) {
     $jsonResponse = new JsonResponse($e);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
     return $jsonResponse;
