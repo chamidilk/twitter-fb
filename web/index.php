@@ -59,7 +59,7 @@ $app->get('/fb', function() use($app) {
   $me = $response->getGraphUser();
 
   try {
-    $arr = array('message' => 'Testing Post for our new tutorial. Graph API.');
+    $arr = ['message' => 'Testing Post for our new tutorial. Graph API.'];
 
     $post_response = $fb->post('/me/feed/', $arr,	$fb_access_token);
   } catch(FacebookResponseException $e) {
