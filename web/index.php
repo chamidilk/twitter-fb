@@ -35,8 +35,8 @@ $app->get('/fb', function() use($app) {
 
   
 
-  // $fb_access_token = 'EAAJHBJ6XrHcBAK0KdOBRCGJQ2jJUvFPVtphbx4wa5zTtmtWmbJDj7vtAalZCbHEcST72LGi2EnIJ4MzeZBZCjBz8eJwksBMvE0sxAw5vaYLck8gV0H3E955qH9egDaMnDllasL2r8tOJCtZBgqCehsXrXgv9wNHphM8Jlt4SeSTYA8H6AlpseymgjIK2gVIZD';
-$fb_access_token = 'EAAJHBJ6XrHcBAGJQDhITUIKnV1vKx4pN3lZA9wk3xcQlZC7mVNAx6YaumuN8zzQIiLCOTbbH1YqapmWDfz8Qbcem9GgsMVSw6mUqjZCTT7pgYuD5nChpicgz8gndZAK9LAegk58dcHcz7sca5sHm96XpcmxaFmEyk1vVWclsmfDZBZC7tOS3hy';
+  $fb_access_token = 'EAAJHBJ6XrHcBAK0KdOBRCGJQ2jJUvFPVtphbx4wa5zTtmtWmbJDj7vtAalZCbHEcST72LGi2EnIJ4MzeZBZCjBz8eJwksBMvE0sxAw5vaYLck8gV0H3E955qH9egDaMnDllasL2r8tOJCtZBgqCehsXrXgv9wNHphM8Jlt4SeSTYA8H6AlpseymgjIK2gVIZD';
+// $fb_access_token = 'EAAJHBJ6XrHcBAGJQDhITUIKnV1vKx4pN3lZA9wk3xcQlZC7mVNAx6YaumuN8zzQIiLCOTbbH1YqapmWDfz8Qbcem9GgsMVSw6mUqjZCTT7pgYuD5nChpicgz8gndZAK9LAegk58dcHcz7sca5sHm96XpcmxaFmEyk1vVWclsmfDZBZC7tOS3hy';
   $fb = new Facebook([
     // 'app_id' => '641035119602807',
     // 'app_secret' => '3e08aeec01868f5292d0bb95da157cc1',
@@ -45,7 +45,7 @@ $fb_access_token = 'EAAJHBJ6XrHcBAGJQDhITUIKnV1vKx4pN3lZA9wk3xcQlZC7mVNAx6YaumuN
   ]);
   
   try {
-    $response = $fb->get('/me?fields=id,name', $fb_access_token);
+    $me_response = $fb->get('/me?fields=id,name', $fb_access_token);
   } catch(FacebookResponseException $e) {
     $jsonResponse = new JsonResponse(['error'=> 'response']);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
@@ -56,7 +56,7 @@ $fb_access_token = 'EAAJHBJ6XrHcBAGJQDhITUIKnV1vKx4pN3lZA9wk3xcQlZC7mVNAx6YaumuN
     return $jsonResponse;
   }
   
-  $me = $response->getGraphUser();
+  $me = $me_response->getGraphUser();
 
   try {
     $arr = ['message' => 'Testing Post for our new tutorial. Graph API.'];
@@ -67,10 +67,26 @@ $fb_access_token = 'EAAJHBJ6XrHcBAGJQDhITUIKnV1vKx4pN3lZA9wk3xcQlZC7mVNAx6YaumuN
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
     return $jsonResponse;
   } catch(FacebookSDKException $e) {
-    $jsonResponse = new JsonResponse(['error'=> 'sdk']);
+    $jsonResponse = new JsonResponse(['error'=> $e->getMessage()]);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
     return $jsonResponse;
   }
+
+
+  try {
+		// message must come from the user-end
+		$data = ['source' => $fb->fileToUpload(__DIR__.'/images/DpjINq9W4AIJtM-.jpg'), 'message' => 'Good morning 🤗 Can’t wait to hit the ground in The Hague! 🇳🇱 RT @BrandBaseNL We are under construction! 🛠🚧 Work in progress at the Malieveld in The Hague. Generation Discover Festival by @Shell and partners. #makethefuture'];
+		$photo_response = $fb->post('/me/photos', $data);
+		$photo_graph_response = $photo_response->getGraphNode()->asArray();
+	} catch(Facebook\Exceptions\FacebookResponseException $e) {
+    $jsonResponse = new JsonResponse(['error'=> $e->getMessage()]);
+    $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
+    return $jsonResponse;
+	} catch(Facebook\Exceptions\FacebookSDKException $e) {
+    $jsonResponse = new JsonResponse(['error'=> $e->getMessage()]);
+    $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
+    return $jsonResponse;
+	}
 
   
 
