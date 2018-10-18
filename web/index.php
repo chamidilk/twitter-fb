@@ -125,6 +125,16 @@ $app->get('/twitter', function() use($app) {
 
   $access_token = '106577396-BIQ9ow7hKEYzvOvFZen4NhBwYeV24inolyugdiLH';
   $access_token_secret = 'gl8s9FKBTorohm030PZGvFmPMBswCKHWs7wrHZFbkKXZS';
+  $consumer_key = 'KvdIHDyqq1a4yPKSE6nQk2npW';
+  $consumer_secret = 'fv2wCYK86w4Pxd8YYhOytxLM8z7vV9krKqtDw2R1fp4tnLkp7b';
+
+
+  $tw = new TwitterApi([
+    'access_token' => $access_token,
+    'access_token_secret' => $access_token_secret,
+    'consumer_key' => $consumer_key,
+    'consumer_secret' => $consumer_secret 
+  ]);
   
   $connection = new TwitterOAuth('KvdIHDyqq1a4yPKSE6nQk2npW', 'fv2wCYK86w4Pxd8YYhOytxLM8z7vV9krKqtDw2R1fp4tnLkp7b', $access_token, $access_token_secret);
   $media1 = $connection->upload('media/upload', ['media' => __DIR__.'/images/DpjINq9W4AIJtM-.jpg']);
