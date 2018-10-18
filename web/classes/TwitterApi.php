@@ -76,13 +76,7 @@ class TwitterApi
 
         $result = $this->connection->post('statuses/update', $post);
 
-        if ($this->connection->getLastHttpCode() == 200) {
-
-            return [ 'result' => $result, 'code' => $this->connection->getLastHttpCode()];
-
-        } else{
-            throw new \Exception('Error occured');
-        }
+        return [ 'result' => $result, 'code' => $this->connection->getLastHttpCode()];
     }
 
     public function postPhoto($status, $media_list = [])
