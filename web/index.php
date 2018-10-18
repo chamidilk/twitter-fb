@@ -136,7 +136,7 @@ $app->get('/twitter', function() use($app) {
     'consumer_secret' => $consumer_secret 
   ]);
   
-  $connection = new TwitterOAuth('KvdIHDyqq1a4yPKSE6nQk2npW', 'fv2wCYK86w4Pxd8YYhOytxLM8z7vV9krKqtDw2R1fp4tnLkp7b', $access_token, $access_token_secret);
+  /* $connection = new TwitterOAuth('KvdIHDyqq1a4yPKSE6nQk2npW', 'fv2wCYK86w4Pxd8YYhOytxLM8z7vV9krKqtDw2R1fp4tnLkp7b', $access_token, $access_token_secret);
   $media1 = $connection->upload('media/upload', ['media' => __DIR__.'/images/DpjINq9W4AIJtM-.jpg']);
 
 
@@ -146,7 +146,9 @@ $app->get('/twitter', function() use($app) {
           'status' => "Good morning 🤗 Can’t wait to hit the ground in The Hague! 🇳🇱 RT @BrandBaseNL We are under construction! 🛠🚧 Work in progress at the Malieveld in The Hague. Generation Discover Festival by @Shell and partners. #makethefuture"];
 
 
-  $result = $connection->post('statuses/update', $post);
+  $result = $connection->post('statuses/update', $post); */
+
+  $result = $tw->postText('hi this a post test');
 
   
 
