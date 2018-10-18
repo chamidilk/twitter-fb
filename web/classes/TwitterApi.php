@@ -123,7 +123,7 @@ class TwitterApi
 
         $post = [
             'status' => $status,
-            'media_ids' => implode(',', media_id_list)
+            'media_ids' => implode(',', $media_id_list)
         ];       
 
         
