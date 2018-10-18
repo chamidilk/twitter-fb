@@ -116,9 +116,9 @@ class TwitterApi
             if ($this->connection->getLastHttpCode() == 200) {
 
             } else{
-                throw new \Exception('Error occured');
+                return [ 'result' => $media, 'code' => $this->connection->getLastHttpCode()];
             }
-            array_push($media_list,$media->media_id_string);
+            array_push($media_id_list,$media->media_id_string);
         }
 
         $post = [
@@ -130,13 +130,7 @@ class TwitterApi
 
         $result = $this->connection->post('statuses/update', $post);
 
-        if ($this->connection->getLastHttpCode() == 200) {
-
-            return $result;
-
-        } else{
-            throw new \Exception('Error occured');
-        }
+        return [ 'result' => $result, 'code' => $this->connection->getLastHttpCode()];
 
     }
 

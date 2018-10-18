@@ -152,7 +152,7 @@ $app->get('/twitter', function() use($app) {
 
   try {
     // $result = $tw->postText('hi this a post test');
-    $result = $tw->postPhoto('hi this a post test', [__DIR__.'/images/DpjINq9W4AIJtM-.jpg']);
+    $result = $tw->postVideo('hi this a post test', [__DIR__.'/video/032bad5d-5a13-4d4d-886c-2e887eb60f61.mp4']);
   } catch(Exception $e) {
     $jsonResponse = new JsonResponse(['error'=> 'api error']);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
