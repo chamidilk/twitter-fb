@@ -74,7 +74,7 @@ class TwitterApi
         $post = ['status' => $status];
 
 
-        $result = $connection->post('statuses/update', $post);
+        $result = $this->connection->post('statuses/update', $post);
 
         if ($connection->getLastHttpCode() == 200) {
 
