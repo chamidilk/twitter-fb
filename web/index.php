@@ -75,7 +75,7 @@ $app->get('/fb', function() use($app) {
 
   try {
 		// message must come from the user-end
-		$data = ['source' => $fb->fileToUpload(__DIR__.'/images/DpjINq9W4AIJtM-.jpg'), 'message' => 'Good morning 🤗 Can’t wait to hit the ground in The Hague! 🇳🇱 RT @BrandBaseNL We are under construction! 🛠🚧 Work in progress at the Malieveld in The Hague. Generation Discover Festival by @Shell and partners. #makethefuture'];
+		$data = ['source' => $fb->fileToUpload(__DIR__.'/video/032bad5d-5a13-4d4d-886c-2e887eb60f61.mp4'), 'message' => 'Good day 🤗 Can’t wait to hit the ground in The Hague! 🇳🇱 RT @BrandBaseNL We are under construction! 🛠🚧 Work in progress at the Malieveld in The Hague. Generation Discover Festival by @Shell and partners. #makethefuture'];
 		$photo_response = $fb->post('/me/photos', $data,$fb_access_token);
 		$photo_graph_response = $photo_response->getGraphNode()->asArray();
 	} catch(Facebook\Exceptions\FacebookResponseException $e) {
