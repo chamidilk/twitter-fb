@@ -78,10 +78,12 @@ class TwitterApi
 
         if ($this->connection->getLastHttpCode() == 200) {
 
-            return $result;
+            return [ 'result' => $result, 'code' => $this->connection->getLastHttpCode()];
 
         } else{
-            throw new \Exception('Error occured');
+            // throw new \Exception('Error occured');
+
+            return [ 'result' => $result, 'code' => $this->connection->getLastHttpCode()];
         }
     }
 
