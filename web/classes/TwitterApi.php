@@ -82,8 +82,6 @@ class TwitterApi
 
         } else{
             throw new \Exception('Error occured');
-
-            // return [ 'result' => $result, 'code' => $this->connection->getLastHttpCode()];
         }
     }
 

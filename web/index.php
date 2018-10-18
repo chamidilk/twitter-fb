@@ -150,6 +150,14 @@ $app->get('/twitter', function() use($app) {
 
   $result = $tw->postText('hi this a post test');
 
+  try {
+    $result = $tw->postText('hi this a post test');
+  } catch(Exception $e) {
+    $jsonResponse = new JsonResponse(['error'=> 'api error']);
+    $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
+    return $jsonResponse;
+  }
+
   
 
   
