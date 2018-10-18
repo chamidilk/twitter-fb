@@ -37,10 +37,10 @@ class TwitterApi
     public function __construct(array $config = [])
     {
         $config = array_merge([
-            'access_token' => null,
-            'access_token_secret' => null,
-            'consumer_key' => null,
-            'consumer_secret' => null
+            'access_token' => getenv(static::ACCESS_TOKEN),
+            'access_token_secret' => getenv(static::ACCESS_TOKEN_SECRET),
+            'consumer_key' => getenv(static::CONSUMER_KEY),
+            'consumer_secret' => getenv(static::CONSUMER_SECRET)
         ], $config);
 
         if (!$config['access_token']) {
