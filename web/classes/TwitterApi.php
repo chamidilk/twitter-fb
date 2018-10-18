@@ -76,7 +76,7 @@ class TwitterApi
 
         $result = $this->connection->post('statuses/update', $post);
 
-        if ($connection->getLastHttpCode() == 200) {
+        if ($this->connection->getLastHttpCode() == 200) {
 
             return $result;
 
@@ -90,8 +90,8 @@ class TwitterApi
         $media_id_list = [];
 
         foreach ($media_list as $item){
-            $media = $connection->upload('media/upload', ['media' => $item]);
-            if ($connection->getLastHttpCode() == 200) {
+            $media = $this->connection->upload('media/upload', ['media' => $item]);
+            if ($this->connection->getLastHttpCode() == 200) {
 
             } else{
                 throw new \Exception('Error occured');
@@ -106,9 +106,9 @@ class TwitterApi
 
         
 
-        $result = $connection->post('statuses/update', $post);
+        $result = $this->connection->post('statuses/update', $post);
 
-        if ($connection->getLastHttpCode() == 200) {
+        if ($this->connection->getLastHttpCode() == 200) {
 
             return $result;
 
@@ -123,9 +123,9 @@ class TwitterApi
         $media_id_list = [];
 
         foreach ($media_list as $item){
-            $media = $connection->upload('media/upload', ['media' => $item, 'media_type' => 'video/mp4'], true);
+            $media = $this->connection->upload('media/upload', ['media' => $item, 'media_type' => 'video/mp4'], true);
 
-            if ($connection->getLastHttpCode() == 200) {
+            if ($this->connection->getLastHttpCode() == 200) {
 
             } else{
                 throw new \Exception('Error occured');
@@ -140,9 +140,9 @@ class TwitterApi
 
         
 
-        $result = $connection->post('statuses/update', $post);
+        $result = $this->connection->post('statuses/update', $post);
 
-        if ($connection->getLastHttpCode() == 200) {
+        if ($this->connection->getLastHttpCode() == 200) {
 
             return $result;
 
