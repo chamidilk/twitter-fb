@@ -85,12 +85,12 @@ class TwitterApi
 
         foreach ($media_list as $item){
             $media = $this->connection->upload('media/upload', ['media' => $item]);
-            /* if ($this->connection->getLastHttpCode() == 200) {
+            if ($this->connection->getLastHttpCode() == 200) {
 
             } else{
                 return [ 'result' => $media, 'code' => $this->connection->getLastHttpCode()];
-            } */
-            array_push($media_list,$media->media_id_string);
+            }
+            array_push($media_id_list,$media->media_id_string);
         }
 
         $post = [
