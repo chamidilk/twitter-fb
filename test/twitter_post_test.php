@@ -58,15 +58,13 @@ $fb = new FacebookApi([
     ]);
 
 
-    $result = $fb->postPhotos('test message for Talio',[__DIR__.'\..\web\images\DpjINq9W4AIJtM-.jpg',__DIR__.'\..\web\images\Cwk8tviXgAE3OWq.jpg']);
+$result = $fb->postPhotos('Good #morning #America 🌞🌞😎',[__DIR__.'\..\web\images\DpjINq9W4AIJtM-.jpg',__DIR__.'\..\web\images\Cwk8tviXgAE3OWq.jpg']);
 
-    print_r($result);
+print_r($result);
 
 
 
-/* $result = $tw->postText("Good #morning #America 🌞🌞😎");
 
-print_r($result); */
 
 
 
