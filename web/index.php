@@ -2,6 +2,7 @@
 
 require('../vendor/autoload.php');
 require('./classes/TwitterApi.php');
+require('./classes/FacebookApi.php');
 
 
 use Abraham\TwitterOAuth\TwitterOAuth;
