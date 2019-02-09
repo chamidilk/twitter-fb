@@ -82,7 +82,8 @@ class TwitterApi
     {
 
         $query = array(
-            "q" => 'from:'.$from.'+#'.$tag
+            "q" => 'from:'.$from.'+#'.$tag,
+            "result_type" => "popular"
         );
        
         $result = $this->connection->get('search/tweets', $query);
