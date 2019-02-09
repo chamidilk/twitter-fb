@@ -85,7 +85,7 @@ class TwitterApi
             "q" => 'from:'.$from.'+'.$tag
         );
        
-        $result = $toa->get('search/tweets', $query);
+        $result = $this->connection->get('search/tweets', $query);
 
         return [ 'result' => $result, 'code' => $this->connection->getLastHttpCode()];
     }
