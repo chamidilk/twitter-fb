@@ -82,7 +82,7 @@ class TwitterApi
     {
 
         $query = array(
-            "q" => 'from:'.$from.'+'.$tag
+            "q" => 'from:'.$from.'+#'.$tag
         );
        
         $result = $this->connection->get('search/tweets', $query);
