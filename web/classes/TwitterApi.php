@@ -72,7 +72,7 @@ class TwitterApi
     public function deleteTweet($id)
     {
 
-        $result = $this->connection->post('statuses/destroy/'.$id.'.json');
+        $result = $this->connection->post('statuses/destroy/'.$id);
 
         return [ 'result' => $result, 'code' => $this->connection->getLastHttpCode()];
     }
