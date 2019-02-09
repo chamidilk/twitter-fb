@@ -227,7 +227,7 @@ $app->get('/twitter/delete', function() use($app) {
   return $jsonResponse;
 });
 
-$app->get('/twitter/search', function(Request $request) use($app) {
+$app->get('/twitter/search', function(Silex\Application $app, $from, $tag) use($app) {
   $app['monolog']->addDebug('logging output.');
 
 
@@ -262,7 +262,7 @@ $app->get('/twitter/search', function(Request $request) use($app) {
 
   try {
     // $result = $tw->postText('hi this a post test');
-    $result = $tw->searchTweet($request->query['from'], $request->query['tag']);
+    $result = $tw->searchTweet($from, $tag);
   } catch(Exception $e) {
     $jsonResponse = new JsonResponse(['error'=> 'api error']);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
