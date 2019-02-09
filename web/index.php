@@ -227,7 +227,7 @@ $app->get('/twitter/delete', function() use($app) {
   return $jsonResponse;
 });
 
-$app->get('/twitter/search', function( $from, $tag) use($app) {
+$app->get('/twitter/search/{from}/{tag}', function( $from, $tag) use($app) {
   $app['monolog']->addDebug('logging output.');
 
 
