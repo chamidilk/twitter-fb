@@ -67,6 +67,16 @@ class TwitterApi
         $this->connection = new TwitterOAuth($this->consumer_key, $this->consumer_secret, $this->access_token, $this->access_token_secret);
     }
 
+    
+
+    public function deleteTweet($id)
+    {
+
+        $result = $this->connection->post('statuses/destroy/'.$id.'.json');
+
+        return [ 'result' => $result, 'code' => $this->connection->getLastHttpCode()];
+    }
+
     public function postText($status)
     {
         
