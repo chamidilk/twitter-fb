@@ -121,8 +121,8 @@ $app->get('/twitter/tweet', function() use($app) {
 
   try {
     $result = $tw->postVideo('hi this a post test', [__DIR__.'/video/032bad5d-5a13-4d4d-886c-2e887eb60f61.mp4']);
-    var_dump($result);
-    $app['monolog']->addDebug($id_str);
+    // var_dump($result);
+    // $app['monolog']->addDebug($id_str);
 
 
     // $sql = "INSERT INTO Tweets (tweet_id, created_date, type) VALUES (?, ?, ?)";
