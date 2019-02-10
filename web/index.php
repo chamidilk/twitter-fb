@@ -100,7 +100,7 @@ $app->get('/fb', function() use($app) {
   return $jsonResponse;
 });
 
-$app->get('/twitter', function() use($app) {
+$app->get('/twitter/tweet', function() use($app) {
   $app['monolog']->addDebug('logging output.');
 
 
@@ -121,6 +121,10 @@ $app->get('/twitter', function() use($app) {
 
   try {
     $result = $tw->postVideo('hi this a post test', [__DIR__.'/video/032bad5d-5a13-4d4d-886c-2e887eb60f61.mp4']);
+
+    $sql = "INSERT INTO Tweets (tweet_id, created_date, type) VALUES (?, ?, ?)";
+    $post = $app['db']->executeUpdate($sql, array($result["id_str"], date('Y-m-d H:i:s'), 'TW' ));
+
   } catch(Exception $e) {
     $jsonResponse = new JsonResponse(['error'=> 'api error']);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
@@ -207,6 +211,53 @@ $app->get('/twitter/search/{from}/{tag}', function( $from, $tag) use($app) {
 
   try {
     $result = $tw->searchTweet($from, $tag);
+  } catch(Exception $e) {
+    $jsonResponse = new JsonResponse(['error'=> 'api error']);
+    $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
+    return $jsonResponse;
+  }
+
+  
+
+  
+
+
+  $jsonResponse = new JsonResponse($result);
+  $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
+
+
+  return $jsonResponse;
+});
+
+
+$app->get('/twitter/retweet/{id}', function( $id) use($app) {
+  $app['monolog']->addDebug('logging output.');
+
+  $sql = "SELECT * FROM Tweets";
+  $post = $app['db']->fetchAssoc($sql);
+
+  $app['monolog']->addDebug(json_encode($post));
+
+
+
+
+  
+
+  $access_token = '106577396-BIQ9ow7hKEYzvOvFZen4NhBwYeV24inolyugdiLH';
+  $access_token_secret = 'gl8s9FKBTorohm030PZGvFmPMBswCKHWs7wrHZFbkKXZS';
+  $consumer_key = 'KvdIHDyqq1a4yPKSE6nQk2npW';
+  $consumer_secret = 'fv2wCYK86w4Pxd8YYhOytxLM8z7vV9krKqtDw2R1fp4tnLkp7b';
+
+
+  $tw = new TwitterApi([
+    'access_token' => $access_token,
+    'access_token_secret' => $access_token_secret,
+    'consumer_key' => $consumer_key,
+    'consumer_secret' => $consumer_secret 
+  ]);
+
+  try {
+    $result = $tw->reTweet($id);
   } catch(Exception $e) {
     $jsonResponse = new JsonResponse(['error'=> 'api error']);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);

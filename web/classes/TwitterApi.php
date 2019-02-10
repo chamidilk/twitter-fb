@@ -68,7 +68,11 @@ class TwitterApi
     }
 
     
-
+    /**
+     * delete a tweet
+     * @param $id
+     * @return result,code
+     */
     public function deleteTweet($id)
     {
 
@@ -77,7 +81,11 @@ class TwitterApi
         return [ 'result' => $result, 'code' => $this->connection->getLastHttpCode()];
     }
 
-
+    /**
+     * search for tweets with given hashtags from a given twitter handle
+     * @param $from,$tag
+     * @return result,code
+     */
     public function searchTweet($from,$tag)
     {
 
@@ -87,6 +95,19 @@ class TwitterApi
         );
        
         $result = $this->connection->get('search/tweets', $query);
+
+        return [ 'result' => $result, 'code' => $this->connection->getLastHttpCode()];
+    }
+
+    /**
+     * retweet a tweet
+     * @param $id
+     * @return result,code
+     */
+    public function reTweet($id)
+    {
+
+        $result = $this->connection->post('statuses/retweet/'.$id);
 
         return [ 'result' => $result, 'code' => $this->connection->getLastHttpCode()];
     }
