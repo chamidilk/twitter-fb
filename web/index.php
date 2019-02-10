@@ -243,7 +243,7 @@ $app->get('/twitter/search/{from}/{tag}', function( $from, $tag) use($app) {
   $sql = "SELECT * FROM Tweets";
   $post = $app['db']->fetchAssoc($sql);
 
-  $app['monolog']->addDebug($post);
+  $app['monolog']->addDebug(json_encode($post));
 
 
 
