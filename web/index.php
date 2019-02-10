@@ -126,7 +126,8 @@ $app->get('/twitter/tweet', function() use($app) {
     $post = $app['db']->executeUpdate($sql, array($result["id_str"], date('Y-m-d H:i:s'), 'TW' ));
 
   } catch(Exception $e) {
-    $jsonResponse = new JsonResponse(['error'=> 'api error', 'msg' => $e]);
+    print_r($e);
+    $jsonResponse = new JsonResponse($e);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
     return $jsonResponse;
   }
