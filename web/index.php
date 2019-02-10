@@ -32,6 +32,16 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/views',
 ));
 
+$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+  // mysql://b3212e2afff850:dedbf2ec@us-cdbr-iron-east-03.cleardb.net/heroku_33f91a4bb90418c?reconnect=true
+  'dbs.options' => array (
+    'driver'    => 'pdo_mysql',
+    'url'      => 'mysql://b3212e2afff850:dedbf2ec@us-cdbr-iron-east-03.cleardb.net/heroku_33f91a4bb90418c?reconnect=true',
+    'dbname'    => 'heroku_33f91a4bb90418c',
+    'charset'   => 'utf8mb4',
+  ),
+));
+
 // Our web handlers
 
 $app->get('/fb', function() use($app) {
