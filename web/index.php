@@ -240,6 +240,13 @@ $app->get('/twitter/delete', function() use($app) {
 $app->get('/twitter/search/{from}/{tag}', function( $from, $tag) use($app) {
   $app['monolog']->addDebug('logging output.');
 
+  $sql = "SELECT * FROM Tweets";
+  $post = $app['db']->fetchAssoc($sql);
+
+  $app['monolog']->addDebug($post);
+
+
+
 
   
 
