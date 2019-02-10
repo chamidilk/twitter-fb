@@ -36,7 +36,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
   // mysql://b3212e2afff850:dedbf2ec@us-cdbr-iron-east-03.cleardb.net/heroku_33f91a4bb90418c?reconnect=true
   'dbs.options' => array (
     'driver'    => 'pdo_mysql',
-    'url'      => 'mysql://b3212e2afff850:dedbf2ec@us-cdbr-iron-east-03.cleardb.net/heroku_33f91a4bb90418c?reconnect=true',
+    'url'      => getenv(static::CLEARDB_DATABASE_URL),
     'dbname'    => 'heroku_33f91a4bb90418c',
     'charset'   => 'utf8mb4',
   ),
