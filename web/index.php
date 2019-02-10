@@ -33,7 +33,6 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-  // mysql://b3212e2afff850:dedbf2ec@us-cdbr-iron-east-03.cleardb.net/heroku_33f91a4bb90418c?reconnect=true
   'db.options' => array (
     // 'driver'    => 'pdo_mysql',
     'url'      => getenv('CLEARDB_DATABASE_URL'),
@@ -183,7 +182,7 @@ $app->get('/twitter', function() use($app) {
 });
 
 
-$app->get('/twitter/delete', function() use($app) {
+$app->get('/twitter/delete/{id}', function($id) use($app) {
   $app['monolog']->addDebug('logging output.');
 
 
@@ -201,24 +200,9 @@ $app->get('/twitter/delete', function() use($app) {
     'consumer_key' => $consumer_key,
     'consumer_secret' => $consumer_secret 
   ]);
-  
-  /* $connection = new TwitterOAuth('KvdIHDyqq1a4yPKSE6nQk2npW', 'fv2wCYK86w4Pxd8YYhOytxLM8z7vV9krKqtDw2R1fp4tnLkp7b', $access_token, $access_token_secret);
-  $media1 = $connection->upload('media/upload', ['media' => __DIR__.'/images/DpjINq9W4AIJtM-.jpg']);
-
-
-  $media2 = $connection->upload('media/upload', ['media' => __DIR__.'/video/032bad5d-5a13-4d4d-886c-2e887eb60f61.mp4', 'media_type' => 'video/mp4'], true);
-
-  $post = ['media_ids' => $media2->media_id_string, 
-          'status' => "Good morning 🤗 Can’t wait to hit the ground in The Hague! 🇳🇱 RT @BrandBaseNL We are under construction! 🛠🚧 Work in progress at the Malieveld in The Hague. Generation Discover Festival by @Shell and partners. #makethefuture"];
-
-
-  $result = $connection->post('statuses/update', $post); */
-
-  // $result = $tw->postText('hi this a post test');
 
   try {
-    // $result = $tw->postText('hi this a post test');
-    $result = $tw->deleteTweet('1094261506219352067');
+    $result = $tw->deleteTweet($id);
   } catch(Exception $e) {
     $jsonResponse = new JsonResponse(['error'=> 'api error']);
     $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
@@ -262,23 +246,8 @@ $app->get('/twitter/search/{from}/{tag}', function( $from, $tag) use($app) {
     'consumer_key' => $consumer_key,
     'consumer_secret' => $consumer_secret 
   ]);
-  
-  /* $connection = new TwitterOAuth('KvdIHDyqq1a4yPKSE6nQk2npW', 'fv2wCYK86w4Pxd8YYhOytxLM8z7vV9krKqtDw2R1fp4tnLkp7b', $access_token, $access_token_secret);
-  $media1 = $connection->upload('media/upload', ['media' => __DIR__.'/images/DpjINq9W4AIJtM-.jpg']);
-
-
-  $media2 = $connection->upload('media/upload', ['media' => __DIR__.'/video/032bad5d-5a13-4d4d-886c-2e887eb60f61.mp4', 'media_type' => 'video/mp4'], true);
-
-  $post = ['media_ids' => $media2->media_id_string, 
-          'status' => "Good morning 🤗 Can’t wait to hit the ground in The Hague! 🇳🇱 RT @BrandBaseNL We are under construction! 🛠🚧 Work in progress at the Malieveld in The Hague. Generation Discover Festival by @Shell and partners. #makethefuture"];
-
-
-  $result = $connection->post('statuses/update', $post); */
-
-  // $result = $tw->postText('hi this a post test');
 
   try {
-    // $result = $tw->postText('hi this a post test');
     $result = $tw->searchTweet($from, $tag);
   } catch(Exception $e) {
     $jsonResponse = new JsonResponse(['error'=> 'api error']);
@@ -308,7 +277,12 @@ $app->get('/', function() use($app) {
 
   
 
-  return $app['twig']->render('index.twig');
+  // return $app['twig']->render('index.twig');
+  $jsonResponse = new JsonResponse({'app': 'twitter automation'});
+  $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
+
+
+  return $jsonResponse;
 });
 
 $app->run();
