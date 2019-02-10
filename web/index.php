@@ -236,7 +236,7 @@ $app->get('/', function() use($app) {
   
 
   // return $app['twig']->render('index.twig');
-  $jsonResponse = new JsonResponse(array('app'=> 'twitter automation');
+  $jsonResponse = new JsonResponse(array('app'=> 'twitter automation'));
   $jsonResponse->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
 
 
